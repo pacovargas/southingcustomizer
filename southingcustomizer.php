@@ -211,58 +211,17 @@ class Southingcustomizer extends Module
         }
         else{
             $this->producto = new Product($id_producto);
-            $combinaciones = $this->getCombinaciones();
-            $atributos = $this->getAtributos();
             $productos = $this->getProductos();
         }
 
         $this->smarty->assign(array(
             "error" => $error,
-            "combinaciones" => $combinaciones,
-            "atributos" => $atributos,
             "productos" => $productos,
-            "nbr_cinturones" => count($atributos["Cinturón"]),
-            "nbr_pasadores" => count($atributos["Pasador"]),
-            "producto" => $this->producto->id,
+            "nbr_cinturones" => count($productos["cinturones"]),
+            "nbr_pasadores" => count($productos["pasadores"]),
         ));
 
         return $this->display(__FILE__, 'southingcustomizer.tpl');
-    }
-
-    private function getCombinaciones(){
-        $combinaciones = array();
-        
-        foreach ($this->producto->getAttributesResume($this->context->language->id) as $pa){
-            $combinaciones[$pa["attribute_designation"]] = array(
-                "id" => $pa["id_product_attribute"],
-                "precio" => $this->producto->getPrice(true, $pa["id_product_attribute"]),
-            );
-        }
-
-        if(count($combinaciones) > 0)
-            return $combinaciones;
-        else
-            return false;
-    }
-
-    private function getAtributos(){
-        $atributos = array();
-        $keys = array("Cinturón" => 0, "Pasador" => 0);
-        foreach(Attribute::getAttributes($this->context->language->id) as $key => $a){
-                if ($a["attribute_group"] == "Cinturón" || $a["attribute_group"] == "Pasador"){
-                $atributos[$a["attribute_group"]][$keys[$a["attribute_group"]]] = array(
-                    "img" => _PS_BASE_URL_ . "/img/co/" . $a["id_attribute"] . ".jpg",
-                    "nombre_comb" => $a["attribute_group"] . " - " . $a["name"],
-                    "nombre" => $a["name"],
-                );
-                $keys[$a["attribute_group"]]++;
-            }
-        }
-
-        if(count($atributos) > 0)
-            return $atributos;
-        else
-            return false;
     }
 
     private function getProductos(){

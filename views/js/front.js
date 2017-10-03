@@ -40,19 +40,24 @@ $(function(){
 		centerMode: true,
 	});
 
+	$("#id-cinturon").val(cinturones[0]['id']);
+	$("#id-pasador").val(pasadores[0]['id']);
+
 	$("#slide-cinturones button.slick-arrow, #slide-pasadores button.slick-arrow").click(function(event) {
 		var keyCinturon = $("#slide-cinturones .slick-current").attr('data-slick-index');
 		var keyPasador = $("#slide-pasadores .slick-current").attr('data-slick-index');
 		$("#cinturon-seleccionado").html(cinturones[keyCinturon].nombre);
 		$("#pasador-seleccionado").html(pasadores[keyPasador].nombre);
-		$("#combinacion").val(cinturones[keyCinturon].nombre_comb + ", " + pasadores[keyPasador].nombre_comb);
-		var precio = combinaciones[cinturones[keyCinturon].nombre_comb + ", " + pasadores[keyPasador].nombre_comb].precio;
-		$("#precio-combinacion").html(combinaciones[cinturones[keyCinturon].nombre_comb + ", " + pasadores[keyPasador].nombre_comb].precio);
+		var precio = parseFloat(cinturones[keyCinturon]['precio']) + parseFloat(pasadores[keyPasador]['precio']);
+		$("#precio-combinacion").html(precio.toFixed(2));
+		$("#id-cinturon").val(cinturones[keyCinturon]['id']);
+		$("#id-pasador").val(pasadores[keyPasador]['id']);
 	});
 
 	$("#comprar-selección").click(function(event) {
-		var nombreComb = $("#combinacion").val();
-		var idComb = combinaciones[nombreComb].id;
-		ajaxCart.add(producto, idComb, false, false, 1, false);
+		var idCinturon = $("#id-cinturon").val();
+		var idPasador = $("#id-pasador").val();
+		ajaxCart.add(idCinturon, null, false, false, 1, false);
+		ajaxCart.add(idPasador, null, false, false, 1, false);
 	});
 });
