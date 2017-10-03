@@ -28,16 +28,16 @@
 $(function(){
 	$("#slide-cinturones").slick({
 		infinite: true,
-		slidesToShow: 3,
+		slidesToShow: 1,
 		slidesToScroll: 1,
 		centerMode: true,
 	});
 
 	$('#slide-pasadores').slick({
 		infinite: true,
-		speed: 500,
-		fade: true,
-		cssEase: 'linear'
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		centerMode: true,
 	});
 
 	$("#slide-cinturones button.slick-arrow, #slide-pasadores button.slick-arrow").click(function(event) {

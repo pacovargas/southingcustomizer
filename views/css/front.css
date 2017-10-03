@@ -36,42 +36,11 @@ button.slick-arrow:before{
 }
 
 #slide-pasadores img{
-    width: 115px;
     margin: 0 auto;
-}
-
-#slide-pasadores > button,
-#slide-pasadores > div{
-    width: 100%;
-    right: 0;
-    left: 0;
-}
-
-#slide-pasadores button.slick-prev{
-    top: -290px;
-}
-
-#slide-pasadores button.slick-next{
-    top: 270px
-}
-
-#slide-pasadores{
-    position: relative;
-    top: -220px
 }
 
 #southingcustomizer{
     padding-bottom: 50px;
-}
-
-#slide-pasadores button.slick-prev:before{
-    font-family: FontAwesome;
-    content: "\f139";
-}
-
-#slide-pasadores button.slick-next:before{
-    font-family: FontAwesome;
-    content: "\f13a";
 }
 
 #fila-seleccion{
@@ -104,4 +73,50 @@ p.titulo-seleccion{
 
 #comprar-selección{
     margin-top: 18px
+}
+
+#slide-cinturones div.slick-slide > img{
+    max-width: 100%;
+    height: auto;
+}
+
+#slide-cinturones div.slick-slide > img{
+    max-width: 85%;
+    height: auto;
+}
+
+#slide-cinturones div.slick-list{
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+#fila-pasadores{
+    transform: rotate(90deg);
+    position: relative;
+    top: -180px;
+    left: 100px;
+}
+
+#fila-pasadores div.slick-slide > img{
+    height: 83px
+}
+
+#slide-pasadores button.slick-prev{
+    left: 750px;
+    z-index: 30000;
+}
+
+#slide-pasadores button.slick-next{
+    right: 750px;
+    z-index: 30000;
+}
+
+#slide-pasadores button.slick-prev:before{
+    font-family: FontAwesome;
+    content: "\f138";
+}
+
+#slide-pasadores button.slick-next:before{
+    font-family: FontAwesome;
+    content: "\f137";
 }
