@@ -11,8 +11,8 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div id="slide-cinturones">
-			{foreach from=$atributos['Cinturón'] key=key item=cinturon}
-				<div><img src="{$cinturon.img}" /></div>
+			{foreach from=$productos['cinturones'] key=key item=cinturon}
+				<div><img src="{$cinturon.imagen}" /></div>
 			{/foreach}
 			</div>
 		</div>
@@ -20,8 +20,8 @@
 	<div class="row" id="fila-pasadores">
 		<div class="col-xs-12">
 			<div id="slide-pasadores">
-				{foreach from=$atributos['Pasador'] key=key item=pasador}
-					<div><img src="{$pasador.img}" /></div>
+				{foreach from=$productos['pasadores'] key=key item=pasador}
+					<div><img src="{$pasador.imagen}" /></div>
 				{/foreach}
 			</div>
 		</div>

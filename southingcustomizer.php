@@ -213,12 +213,14 @@ class Southingcustomizer extends Module
             $this->producto = new Product($id_producto);
             $combinaciones = $this->getCombinaciones();
             $atributos = $this->getAtributos();
+            $productos = $this->getProductos();
         }
 
         $this->smarty->assign(array(
             "error" => $error,
             "combinaciones" => $combinaciones,
             "atributos" => $atributos,
+            "productos" => $productos,
             "nbr_cinturones" => count($atributos["Cinturón"]),
             "nbr_pasadores" => count($atributos["Pasador"]),
             "producto" => $this->producto->id,
@@ -261,5 +263,49 @@ class Southingcustomizer extends Module
             return $atributos;
         else
             return false;
+    }
+
+    private function getProductos(){
+        $productos = array();
+        $link = new Link();
+
+        $id_cinturones = 4;
+        $id_pasadores = 5;
+
+        $categoria = new Category($id_cinturones);
+        $cinturones = $categoria->getProducts(3, 0, 1000000);
+        foreach ($cinturones as $cinturon){
+            $img = Product::getCover($cinturon["id_product"]);
+            $enlace_img = $link->getImageLink($cinturon["link_rewrite"], $img["id_image"]);
+            $enlace_img = _PS_BASE_URL_ . substr($enlace_img, strpos($enlace_img, "/"));
+
+            $productos["cinturones"][] = array(
+                "id" => $cinturon["id_product"],
+                "nombre" => $cinturon["name"],
+                "imagen" => $enlace_img,
+                "precio" => $cinturon["price"],
+            );
+        }
+
+        $categoria = new Category($id_pasadores);
+        $pasadores = $categoria->getProducts(3, 0, 1000000);
+        foreach ($pasadores as $pasador){
+            $img = Product::getCover($pasador["id_product"]);
+            $enlace_img = $link->getImageLink($pasador["link_rewrite"], $img["id_image"]);
+            $enlace_img = _PS_BASE_URL_ . substr($enlace_img, strpos($enlace_img, "/"));
+
+            $productos["pasadores"][] = array(
+                "id" => $pasador["id_product"],
+                "nombre" => $pasador["name"],
+                "imagen" => $enlace_img,
+                "precio" => $pasador["price"],
+            );
+        }
+
+        if(count($productos) > 0)
+            return $productos;
+        else
+            return false;
+
     }
 }

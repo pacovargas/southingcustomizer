@@ -93,12 +93,8 @@ p.titulo-seleccion{
 #fila-pasadores{
     transform: rotate(90deg);
     position: relative;
-    top: -180px;
+    top: -150px;
     left: 100px;
-}
-
-#fila-pasadores div.slick-slide > img{
-    height: 83px
 }
 
 #slide-pasadores button.slick-prev{
